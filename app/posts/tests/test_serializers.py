@@ -11,13 +11,12 @@ def test_post_serializer_create_success():
 
     data = {"title": "제목", "body": "본문", "password": "123abc"}
 
-    serializer = PostSerializer(**data)
+    serializer = PostSerializer(data=data)
     serializer.is_valid(raise_exception=True)
     serializer.save()
 
     assert serializer.data["title"] == "제목"
     assert serializer.data["body"] == "본문"
-    assert serializer.data["password"] == "123abc"
 
 
 def test_post_serializer_create_fail_with_short_password():
@@ -26,7 +25,7 @@ def test_post_serializer_create_fail_with_short_password():
     """
     data = {"title": "제목", "body": "본문", "password": "123ab"}
 
-    serializer = PostSerializer(**data)
+    serializer = PostSerializer(data=data)
 
     with pytest.raises(serializers.ValidationError):
         serializer.is_valid(raise_exception=True)
@@ -39,7 +38,7 @@ def test_post_serializer_create_fail_with_no_digit_password():
     """
     data = {"title": "제목", "body": "본문", "password": "abcdef"}
 
-    serializer = PostSerializer(**data)
+    serializer = PostSerializer(data=data)
 
     with pytest.raises(serializers.ValidationError):
         serializer.is_valid(raise_exception=True)
