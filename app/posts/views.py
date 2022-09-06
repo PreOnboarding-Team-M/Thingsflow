@@ -1,3 +1,8 @@
-from django.shortcuts import render  # noqa
+from rest_framework.generics import CreateAPIView
+from posts.serializers import PostSerializer
+from posts.models import Post
 
-# Create your views here.
+
+class PostCreateView(CreateAPIView):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
