@@ -34,14 +34,18 @@ DJANGO_APPS = ["posts"]
 THIRD_PARTY_APPS = ["rest_framework", "drf_spectacular"]
 
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-]
+INSTALLED_APPS = (
+    [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+    ]
+    + DJANGO_APPS
+    + THIRD_PARTY_APPS
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
