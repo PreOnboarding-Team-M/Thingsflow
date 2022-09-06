@@ -30,3 +30,14 @@ def test_post_model_create_fail_with_long_body():
     """
     with pytest.raises(DataError):
         Post.objects.create(title="제목", body="본문" * 101, password="123abc")
+
+
+def test_post_model_create_success_with_emoji():
+    """Post 모델 생성 테스트 - 성공
+    이모지 포함
+    """
+    post = Post.objects.create(title="제목", body="본문😀", password="102938")
+
+    assert post.title == "제목"
+    assert post.body == "본문😀"
+    assert post.password == "102938"
