@@ -1,5 +1,6 @@
 import pytest
 from django.db.utils import DataError
+from django.contrib.auth.hashers import check_password
 from posts.models import Post
 
 pytestmark = pytest.mark.django_db
@@ -11,7 +12,7 @@ def test_post_model_create_success():
 
     assert post.title == "제목"
     assert post.body == "본문"
-    assert post.password == "102938"
+    assert check_password("102938", post.password)
 
 
 def test_post_model_create_fail_with_long_title():
@@ -40,4 +41,4 @@ def test_post_model_create_success_with_emoji():
 
     assert post.title == "제목"
     assert post.body == "본문😀"
-    assert post.password == "102938"
+    assert check_password("102938", post.password)
