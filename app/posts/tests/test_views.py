@@ -33,10 +33,11 @@ def test_post_update_success(client, mocker):
     assert response.data["body"] == "본문 수정"
 
 
-def test_post_update_fail_with_wrong_password(client):
+def test_post_update_fail_with_wrong_password(client, mocker):
     """Post 수정 테스트 - 실패
     비밀번호 틀림
     """
+    mocker.patch("posts.service.get_weather_data", create_mock_weather_data)
     post = Post.objects.create(title="제목", body="본문", password="123abc")
     data = {"title": "제목 수정", "body": "본문 수정", "password": "123abcd"}
     url = reverse("posts:post-retrieve-update-delete", kwargs={"pk": post.pk})
@@ -73,8 +74,9 @@ def test_post_list_success_with_left_10_posts(client, sample_posts):
     assert len(response.data["results"]) == length
 
 
-def test_post_delete_success(client):
+def test_post_delete_success(client, mocker):
     """Post 삭제 테스트 - 성공"""
+    mocker.patch("posts.service.get_weather_data", create_mock_weather_data)
     post = Post.objects.create(title="제목", body="본문", password="123abc")
     url = reverse("posts:post-retrieve-update-delete", kwargs={"pk": post.pk})
 
