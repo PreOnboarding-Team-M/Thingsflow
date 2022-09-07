@@ -1,13 +1,15 @@
 import pytest
 from django.urls import reverse
 from posts.models import Post
+from posts.tests.mocks import create_mock_weather_data
 
 pytestmark = pytest.mark.django_db
 
 
-def test_post_create_success(client):
+def test_post_create_success(client, mocker):
     """Post 생성 테스트 - 성공"""
     url = reverse("posts:post-create")
+    mocker.patch("posts.service.get_weather_data", create_mock_weather_data)
     data = {"title": "제목", "body": "본문", "password": "123abc"}
 
     response = client.post(url, data=data)
@@ -17,8 +19,9 @@ def test_post_create_success(client):
     assert response.data["body"] == "본문"
 
 
-def test_post_update_success(client):
+def test_post_update_success(client, mocker):
     """Post 수정 테스트 - 성공"""
+    mocker.patch("posts.service.get_weather_data", create_mock_weather_data)
     post = Post.objects.create(title="제목", body="본문", password="123abc")
     data = {"title": "제목 수정", "body": "본문 수정", "password": "123abc"}
     url = reverse("posts:post-retrieve-update-delete", kwargs={"pk": post.pk})
