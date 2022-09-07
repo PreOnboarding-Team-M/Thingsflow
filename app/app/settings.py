@@ -144,7 +144,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "띵스플로우 백엔드 개발자 기업 과제 API 문서",
-    "DESCRIPTION": "drf-specatular 를 사용해서 만든 API 문서입니다.",
+    "DESCRIPTION": "띵스플로우 백엔드 개발자 기업 과제 API 문서입니다.",
     "CONTACT": {
         "name": "정민채",
         "url": "http://www.example.com/support",
