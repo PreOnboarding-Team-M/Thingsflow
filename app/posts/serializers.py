@@ -15,6 +15,16 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ("title", "body", "password")
         extra_kwargs = {"password": {"write_only": True}}
 
+    def validate_title(self, value):
+        if len(value) > 20:
+            raise serializers.ValidationError("제목은 20자 이하여야 합니다.")
+        return value
+
+    def validate_body(self, value):
+        if len(value) > 200:
+            raise serializers.ValidationError("본문은 200자 이하여야 합니다.")
+        return value
+
     def validate_password(self, value):
         if len(value) < 6:
             raise serializers.ValidationError("비밀번호는 6자 이상이어야 합니다.")
