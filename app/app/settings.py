@@ -140,3 +140,29 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
 }
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "띵스플로우 백엔드 개발자 기업 과제 API 문서",
+    "DESCRIPTION": "drf-specatular 를 사용해서 만든 API 문서입니다.",
+    "CONTACT": {
+        "name": "정민채",
+        "url": "http://www.example.com/support",
+        "email": "minchae3618@gmail.com",
+    },
+    "SWAGGER_UI_SETTINGS": {
+        "dom_id": "#swagger-ui",
+        "layout": "BaseLayout",
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "filter": True,
+    },
+    "LICENSE": {
+        "name": "MIT License",
+    },
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SERVE_URLCONF": "app.urls",
+    "SWAGGER_UI_DIST": "//unpkg.com/swagger-ui-dist@4.14.0",
+}
