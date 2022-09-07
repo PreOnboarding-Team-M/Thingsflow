@@ -18,7 +18,9 @@ class Post(models.Model):
 
 
 class PostWeather(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        Post, related_name="post_weather", on_delete=models.CASCADE
+    )
     location = models.CharField(max_length=20, verbose_name=_("위치"))
     country = models.CharField(max_length=20, verbose_name=_("국가"))
     lat = models.FloatField(verbose_name=_("위도"))
