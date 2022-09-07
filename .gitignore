@@ -391,3 +391,4 @@ app/*/migrations
 logs/
 db/
 schema.yaml
+app/.env
